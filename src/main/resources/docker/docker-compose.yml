@@ -1,0 +1,14 @@
+version: '2.2'
+services:
+  i-cresco-base-db:
+    image: postgres:13.3
+    container_name: i-cresco-base-db
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: i-cresco
+    ports:
+      - "5433:5432"
