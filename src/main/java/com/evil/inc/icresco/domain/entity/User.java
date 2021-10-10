@@ -1,30 +1,37 @@
-package com.evil.inc.icresco.model;
+package com.evil.inc.icresco.domain.entity;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", indexes = @Index(name = "users_username", columnList = "username", unique = true))
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends AbstractEntity {
+public class User extends AbstractEntity implements UserDetails {
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
@@ -32,8 +39,9 @@ public class User extends AbstractEntity {
     private String lastName;
 
     @Column(name = "user_name", unique = true, nullable = false)
-    private String userName;
+    private String username;
 
+    @Builder.Default
     @Column(name = "enabled", nullable = false)
     private boolean enabled = true;
 
@@ -47,8 +55,23 @@ public class User extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<GrowthPlan> growthPlans = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserAuthority> authorities = new HashSet<>();
+
+    public void addUserRole(UserAuthority userAuthority) {
+        authorities.add(userAuthority);
+        userAuthority.setUser(this);
+    }
+
+    public void removeUserRole(UserAuthority userAuthority) {
+        authorities.remove(userAuthority);
+        userAuthority.setUser(null);
+    }
 
     public void addGrowthPlan(GrowthPlan growthPlan) {
         growthPlans.add(growthPlan);
@@ -66,10 +89,31 @@ public class User extends AbstractEntity {
                 "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", enabled=" + enabled +
                 ", email='" + email + '\'' +
                 ", gender=" + gender +
+//TODO          ", growthPlans=" + growthPlans +
                 '}';
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return enabled;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return enabled;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return enabled;
     }
 }

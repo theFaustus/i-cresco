@@ -1,4 +1,4 @@
-package com.evil.inc.icresco.service.mapper;
+package com.evil.inc.icresco.domain.mapper;
 
 import java.util.Collection;
 import java.util.List;

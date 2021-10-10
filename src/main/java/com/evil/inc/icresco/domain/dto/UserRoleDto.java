@@ -1,8 +1,7 @@
-package com.evil.inc.icresco.web.dto;
+package com.evil.inc.icresco.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.aspectj.lang.annotation.Aspect;
 
 @Data
 @AllArgsConstructor

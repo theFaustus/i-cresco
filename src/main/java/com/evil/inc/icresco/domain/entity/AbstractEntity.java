@@ -1,4 +1,4 @@
-package com.evil.inc.icresco.model;
+package com.evil.inc.icresco.domain.entity;
 
 import lombok.Getter;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,15 +11,14 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.Objects;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
-public abstract class AbstractEntity {
+public abstract class AbstractEntity implements Serializable {
     @Id
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "UUID")

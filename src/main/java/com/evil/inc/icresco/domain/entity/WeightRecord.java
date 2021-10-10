@@ -1,4 +1,4 @@
-package com.evil.inc.icresco.model;
+package com.evil.inc.icresco.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,20 +12,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "presentation_records")
+@Table(name = "weight_records")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PresentationRecord extends AbstractEntity{
+public class WeightRecord extends AbstractEntity{
 
-    @Column(name = "title", nullable = false)
-    private String title;
-    @Column(name = "description", nullable = false)
-    private String description;
-    @Column(name = "url", nullable = false)
-    private String url;
+    @Column(name = "value", nullable = false)
+    private Double value;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private GrowthPlan growthPlan;
 
+    public WeightRecord(final Double value) {
+        this.value = value;
+    }
 }

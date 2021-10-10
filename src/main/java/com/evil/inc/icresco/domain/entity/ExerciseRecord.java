@@ -1,7 +1,6 @@
-package com.evil.inc.icresco.model;
+package com.evil.inc.icresco.domain.entity;
 
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

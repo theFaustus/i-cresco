@@ -27,7 +27,7 @@ public class LoggingAspect {
     public Object logAround(ProceedingJoinPoint pjp) throws Throwable {
         log.debug("before :: {} ", pjp.toLongString());
         final Object returnValue = pjp.proceed();
-        log.debug("after :: {} ",  pjp.toLongString());
+        log.debug("after :: {} = {}",  pjp.toLongString(), returnValue);
         return returnValue;
     }
 }

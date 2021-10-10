@@ -1,4 +1,4 @@
-package com.evil.inc.icresco.model;
+package com.evil.inc.icresco.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,18 +12,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "book_records")
+@Table(name = "article_records")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BookRecord extends AbstractEntity{
+public class ArticleRecord extends AbstractEntity{
 
     @Column(name = "title", nullable = false)
     private String title;
-    @Column(name = "author", nullable = false)
-    private String author;
     @Column(name = "description", nullable = false)
     private String description;
+    @Column(name = "url", nullable = false)
+    private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private GrowthPlan growthPlan;

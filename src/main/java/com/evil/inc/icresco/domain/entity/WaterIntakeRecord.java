@@ -1,4 +1,4 @@
-package com.evil.inc.icresco.model;
+package com.evil.inc.icresco.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -10,22 +10,21 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.Duration;
 
 @Entity
-@Table(name = "sleep_records")
+@Table(name = "water_intake_records")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SleepRecord extends AbstractEntity{
+public class WaterIntakeRecord extends AbstractEntity{
 
-    @Column(name = "amount_of_sleep", nullable = false)
-    private Duration amountOfSleep;
+    @Column(name = "number_of_glasses", nullable = false)
+    private Double numberOfGlasses;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private GrowthPlan growthPlan;
 
-    public SleepRecord(final Duration amountOfSleep) {
-        this.amountOfSleep = amountOfSleep;
+    public WaterIntakeRecord(final Double numberOfGlasses) {
+        this.numberOfGlasses = numberOfGlasses;
     }
 }

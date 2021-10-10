@@ -1,7 +1,7 @@
 package com.evil.inc.icresco;
 
-import com.evil.inc.icresco.model.Gender;
-import com.evil.inc.icresco.model.User;
+import com.evil.inc.icresco.domain.entity.Gender;
+import com.evil.inc.icresco.domain.entity.User;
 import com.evil.inc.icresco.repo.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -31,13 +31,13 @@ public class IcrescoApplication {
                     .firstName("bob")
                     .lastName("dylan")
                     .gender(Gender.MALE)
-                    .userName("bdylan")
+                    .username("bdylan")
                     .enabled(true)
                     .password("nino")
                     .build();
 
             userRepository.save(user);
-            log.info("Found {}", userRepository.findByUserName("bdylan").get());
+            log.info("Found {}", userRepository.findByUsername("bdylan").get());
         };
     }
 }
