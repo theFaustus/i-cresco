@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class UserRoleDto {
-    private String roleName;
+public class UserAuthorityDto {
+    private String authority;
     private String userId;
 }

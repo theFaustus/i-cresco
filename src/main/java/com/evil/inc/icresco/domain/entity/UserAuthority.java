@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_roles")
+@Table(name = "user_authorities")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
@@ -27,6 +27,10 @@ public class UserAuthority extends AbstractEntity implements GrantedAuthority {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User user;
+
+    public UserAuthority(final Authority authority) {
+        this.authority = authority;
+    }
 
     @Override
     public String getAuthority() {

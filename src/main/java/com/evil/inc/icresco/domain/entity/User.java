@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.CascadeType;
@@ -18,7 +17,6 @@ import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,7 +36,7 @@ public class User extends AbstractEntity implements UserDetails {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "user_name", unique = true, nullable = false)
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
     @Builder.Default
@@ -63,12 +61,12 @@ public class User extends AbstractEntity implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserAuthority> authorities = new HashSet<>();
 
-    public void addUserRole(UserAuthority userAuthority) {
+    public void addAuthority(UserAuthority userAuthority) {
         authorities.add(userAuthority);
         userAuthority.setUser(this);
     }
 
-    public void removeUserRole(UserAuthority userAuthority) {
+    public void removeAuthority(UserAuthority userAuthority) {
         authorities.remove(userAuthority);
         userAuthority.setUser(null);
     }
