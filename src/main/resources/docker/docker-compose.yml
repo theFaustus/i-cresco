@@ -12,3 +12,9 @@ services:
       POSTGRES_DB: i-cresco
     ports:
       - "5433:5432"
+
+  i-cresco-cache:
+    image: redis
+    container_name: i-cresco-cache
+    ports:
+      - "6379:6379"

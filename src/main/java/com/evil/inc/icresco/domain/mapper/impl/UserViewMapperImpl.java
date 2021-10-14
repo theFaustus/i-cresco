@@ -1,21 +1,26 @@
 package com.evil.inc.icresco.domain.mapper.impl;
 
 import com.evil.inc.icresco.domain.entity.User;
-import com.evil.inc.icresco.domain.dto.UserDto;
+import com.evil.inc.icresco.domain.dto.UserView;
+import com.evil.inc.icresco.domain.entity.UserAuthority;
 import com.evil.inc.icresco.domain.mapper.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
-class UserDtoMapperImpl implements Mapper<User, UserDto> {
+class UserViewMapperImpl implements Mapper<User, UserView> {
     @Override
-    public UserDto map(final User entity) {
-        return UserDto.builder()
+    public UserView map(final User entity) {
+        return UserView.builder()
                 .id(entity.getId())
                 .email(entity.getEmail())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
-                .userName(entity.getUsername())
+                .username(entity.getUsername())
                 .gender(entity.getGender().name())
+                .authorities(
+                        entity.getAuthorities().stream().map(UserAuthority::getAuthority).collect(Collectors.toSet()))
 //TODO          .growthPlans()
                 .build();
     }

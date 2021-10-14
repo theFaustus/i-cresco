@@ -1,4 +1,4 @@
 package com.evil.inc.icresco.domain.dto;
 
-public class GrowthPlanDto {
+public class GrowthPlanView {
 }

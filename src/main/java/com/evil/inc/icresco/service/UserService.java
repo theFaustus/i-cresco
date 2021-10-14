@@ -1,13 +1,15 @@
 package com.evil.inc.icresco.service;
 
+import com.evil.inc.icresco.domain.dto.CreateUserRequest;
+import com.evil.inc.icresco.domain.dto.UserView;
 import com.evil.inc.icresco.domain.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface UserService {
-    Page<User> findAll(Pageable pageable);
-    User findById(String id);
-    User create(User user);
-    User findByUserName(String userName);
+    Page<UserView> findAll(Pageable pageable);
+    UserView findById(String id);
+    UserView create(CreateUserRequest createUserRequest);
+    UserView findByUsername(String username);
 
 }
