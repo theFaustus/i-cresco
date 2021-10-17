@@ -16,6 +16,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.util.Set;
@@ -33,6 +34,7 @@ public class IcrescoApplication {
     }
 
     @Bean
+    @Profile("dev")
     public CommandLineRunner commandLineRunner(UserService userService) {
         return args -> {
             final CreateUserRequest request = CreateUserRequest.builder()
