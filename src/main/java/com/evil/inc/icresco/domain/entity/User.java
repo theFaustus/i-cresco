@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.CascadeType;
@@ -13,6 +15,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -59,6 +62,7 @@ public class User extends AbstractEntity implements UserDetails {
 
     @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.JOIN)
     private Set<UserAuthority> authorities = new HashSet<>();
 
     public void addAuthority(UserAuthority userAuthority) {

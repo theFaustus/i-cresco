@@ -74,7 +74,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(String.format("%s/**", restApiDocPath)).permitAll()
                 .antMatchers(String.format("%s/**", swaggerPath)).permitAll()
                 .antMatchers("/api/public/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/users/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);

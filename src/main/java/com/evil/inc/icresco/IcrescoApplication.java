@@ -42,6 +42,7 @@ public class IcrescoApplication {
                     .gender("MALE")
                     .username("bdylan")
                     .password("nino")
+                    .authorities(Set.of(Authority.POWER_USER.name()))
                     .build();
             userService.create(request);
             log.info("Found {}", userService.findByUsername("bdylan"));

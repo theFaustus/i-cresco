@@ -1,0 +1,7 @@
+### All users
+GET http://localhost:8080/api/users/
+Authorization: {{authKey}}
+
+### User by id
+GET http://localhost:8080/api/users/440bb38f-8059-4c59-b545-0194a1dbdda1
+Authorization: {{authKey}}

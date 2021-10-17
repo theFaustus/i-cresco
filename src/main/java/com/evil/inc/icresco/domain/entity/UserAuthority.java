@@ -36,6 +36,6 @@ public class UserAuthority extends AbstractEntity implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return authority.name();
+        return "ROLE_" + authority.name();
     }
 }

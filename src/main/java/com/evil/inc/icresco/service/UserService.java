@@ -13,4 +13,5 @@ public interface UserService {
     UserView create(CreateUserRequest createUserRequest);
     UserView findByUsername(String username);
     UserView authenticate(AuthRequest authRequest);
+    void delete(String id);
 }

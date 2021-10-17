@@ -114,4 +114,10 @@ public class UserServiceImpl implements UserService {
         userView.setAccessToken(accessToken);
         return userView;
     }
+
+    @Override
+    @Transactional
+    public void delete(final String id) {
+        userRepository.deleteById(id);
+    }
 }

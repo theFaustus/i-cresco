@@ -6,3 +6,12 @@ Content-Type: application/json
   "username": "square-pants",
   "password": "123456"
 }
+
+### Send POST request with json body
+POST http://localhost:8080/api/public/login
+Content-Type: application/json
+
+{
+  "username": "bdylan",
+  "password": "nino"
+}
