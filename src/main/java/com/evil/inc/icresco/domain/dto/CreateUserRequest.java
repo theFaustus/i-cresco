@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,9 +27,6 @@ public class CreateUserRequest {
     private String gender;
     @NotBlank
     private String password;
+    @NotEmpty
     private Set<String> authorities;
-
-    public Set<UserAuthority> getUserAuthorities() {
-        return getAuthorities().stream().map(a -> new UserAuthority(Authority.valueOf(a))).collect(Collectors.toSet());
-    }
 }

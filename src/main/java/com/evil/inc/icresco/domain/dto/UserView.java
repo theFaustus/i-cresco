@@ -1,5 +1,6 @@
 package com.evil.inc.icresco.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.hateoas.server.core.Relation;
@@ -19,4 +20,7 @@ public class UserView {
     private String gender;
     private Set<String> authorities;
     private List<GrowthPlanView> growthPlans;
+
+    @JsonIgnore
+    private String accessToken;
 }

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,11 +30,21 @@ public class GlobalControllerAdvice {
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ErrorResponse<String>> handleValidationException(HttpServletRequest request,
                                                                            ValidationException ex) {
-        log.error("ValidationException {}", request.getRequestURI(), ex);
+        log.error("handleValidationException {}", request.getRequestURI(), ex);
 
         return ResponseEntity
                 .badRequest()
                 .body(new ErrorResponse<>("Validation exception", List.of(ex.getMessage())));
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorResponse<String>> handleBadCredentialsException(HttpServletRequest request, BadCredentialsException ex) {
+        log.error("handleBadCredentialsException {}", request.getRequestURI(), ex);
+
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(new ErrorResponse<>("Bad credentials",
+                                          List.of(Objects.requireNonNull(ex.getMessage()))));
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)

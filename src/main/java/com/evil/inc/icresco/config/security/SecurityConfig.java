@@ -51,7 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             ));
     }
 
-    // Set password encoding schema
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -59,36 +58,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Enable CORS and disable CSRF
-        http = http.cors().and().csrf().disable();
-
-        // Set session management to stateless
-        http = http
+        http.cors().and().csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and();
-
-        // Set unauthorized requests exception handler
-        http = http
+                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(
                         (request, response, ex) -> {
                             log.error("Unauthorized request - {}", ex.getMessage());
                             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage());
-                        }
-                                         )
-                .and();
-
-        // Set permissions on endpoints
-        http.authorizeRequests()
-                // Swagger endpoints must be publicly accessible
+                        })
+                .and()
+                .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers(String.format("%s/**", restApiDocPath)).permitAll()
                 .antMatchers(String.format("%s/**", swaggerPath)).permitAll()
-                // Our public endpoints
                 .antMatchers("/api/public/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/users/**").permitAll()
-                // Our private endpoints
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
@@ -106,7 +92,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new CorsFilter(source);
     }
 
-    @Override @Bean
+    @Override
+    @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }

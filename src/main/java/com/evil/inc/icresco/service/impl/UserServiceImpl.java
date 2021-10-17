@@ -1,6 +1,8 @@
 package com.evil.inc.icresco.service.impl;
 
 import com.evil.inc.icresco.config.cache.properties.CacheNames;
+import com.evil.inc.icresco.config.security.JwtTokenUtil;
+import com.evil.inc.icresco.domain.dto.AuthRequest;
 import com.evil.inc.icresco.domain.dto.CreateUserRequest;
 import com.evil.inc.icresco.domain.dto.UserView;
 import com.evil.inc.icresco.domain.entity.Authority;
@@ -20,6 +22,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +43,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final Mapper<User, UserView> userViewMapper;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenUtil jwtTokenUtil;
 
     @Cacheable
     @Override
@@ -74,8 +81,12 @@ public class UserServiceImpl implements UserService {
                 .lastName(request.getLastName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .gender(Gender.valueOf(request.getGender()))
-                .authorities(request.getUserAuthorities())
                 .build();
+
+        request.getAuthorities()
+                .stream()
+                .map(a -> new UserAuthority(Authority.valueOf(a)))
+                .forEach(user::addAuthority);
 
         userRepository.save(user);
 
@@ -89,5 +100,18 @@ public class UserServiceImpl implements UserService {
         final User user = userRepository.findByUsername(username).orElseThrow(
                 () -> new NotFoundException(User.class, "username", username));
         return userViewMapper.map(user);
+    }
+
+    @Override
+    @Transactional
+    public UserView authenticate(final AuthRequest authRequest) {
+        Authentication authentication = authenticationManager
+                .authenticate(
+                        new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+        User user = (User) authentication.getPrincipal();
+        final String accessToken = jwtTokenUtil.generateAccessToken(user);
+        final UserView userView = userViewMapper.map(user);
+        userView.setAccessToken(accessToken);
+        return userView;
     }
 }
