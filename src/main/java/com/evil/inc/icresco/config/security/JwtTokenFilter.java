@@ -2,6 +2,7 @@ package com.evil.inc.icresco.config.security;
 
 import com.evil.inc.icresco.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -21,9 +23,11 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
+@RestControllerAdvice
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private final JwtTokenUtil jwtTokenUtil;
+    private final JwtTokenManager jwtTokenManager;
     private final UserRepository userRepository;
 
     @Override
@@ -31,7 +35,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
-
+        log.info("before :: doFilterInternal");
         final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (header == null || !header.startsWith("Bearer ")) {
             chain.doFilter(request, response);
@@ -39,13 +43,13 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         }
 
         final String token = header.split(" ")[1].trim();
-        if (!jwtTokenUtil.validate(token)) {
+        if (!jwtTokenManager.validate(token)) {
             chain.doFilter(request, response);
             return;
         }
 
         UserDetails userDetails = userRepository
-                .findByUsername(jwtTokenUtil.getUsername(token))
+                .findByUsername(jwtTokenManager.getUsername(token))
                 .orElse(null);
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
@@ -57,6 +61,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        log.info("after :: doFilterInternal");
         chain.doFilter(request, response);
     }
 }

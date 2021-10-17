@@ -3,6 +3,7 @@ package com.evil.inc.icresco.config.cache;
 import com.evil.inc.icresco.config.cache.properties.CacheNames;
 import com.evil.inc.icresco.config.cache.properties.CacheProperties;
 import com.evil.inc.icresco.config.cache.properties.CachePropertiesEntry;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -31,16 +32,18 @@ public class CacheConfig {
     static class RedisCacheConfig {
         @Bean
         @ConditionalOnProperty(name = "caching.type", havingValue = "redis", matchIfMissing = true)
-        public CacheManager cacheManager(RedisConnectionFactory connectionFactory, CacheProperties cacheProperties, ObjectMapper objectMapper) {
+        public CacheManager cacheManager(RedisConnectionFactory connectionFactory, CacheProperties cacheProperties) {
             Map<String, RedisCacheConfiguration> cacheConfigurations = new HashMap<>();
             for (Map.Entry<String, CachePropertiesEntry> cacheEntry : cacheProperties.getConfiguredCaches().entrySet()) {
                 String cacheName = cacheEntry.getKey();
                 CachePropertiesEntry cacheConfig = cacheEntry.getValue();
                 if (cacheConfig.isEnabled()) {
-                    cacheConfigurations.put(cacheName, RedisCacheConfiguration.defaultCacheConfig()
-                            .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer(objectMapper)))
+                    final RedisCacheConfiguration configuration = RedisCacheConfiguration.defaultCacheConfig()
+                            .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(
+                                    new GenericJackson2JsonRedisSerializer()))
                             .disableCachingNullValues()
-                            .entryTtl(Duration.ofMinutes(cacheConfig.getTimeToLiveMinutes())));
+                            .entryTtl(Duration.ofMinutes(cacheConfig.getTimeToLiveMinutes()));
+                    cacheConfigurations.put(cacheName, configuration);
                 }
             }
             return RedisCacheManager.builder(connectionFactory)

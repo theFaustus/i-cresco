@@ -1,7 +1,7 @@
 package com.evil.inc.icresco.service.impl;
 
 import com.evil.inc.icresco.config.cache.properties.CacheNames;
-import com.evil.inc.icresco.config.security.JwtTokenUtil;
+import com.evil.inc.icresco.config.security.JwtTokenManager;
 import com.evil.inc.icresco.domain.dto.AuthRequest;
 import com.evil.inc.icresco.domain.dto.CreateUserRequest;
 import com.evil.inc.icresco.domain.dto.UserView;
@@ -31,8 +31,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ValidationException;
 import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -44,9 +42,8 @@ public class UserServiceImpl implements UserService {
     private final Mapper<User, UserView> userViewMapper;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-    private final JwtTokenUtil jwtTokenUtil;
+    private final JwtTokenManager jwtTokenManager;
 
-    @Cacheable
     @Override
     @Transactional(readOnly = true)
     public Page<UserView> findAll(final Pageable pageable) {
@@ -54,7 +51,7 @@ public class UserServiceImpl implements UserService {
         return page.map(userViewMapper::map);
     }
 
-    @Cacheable
+    @Cacheable(key = "#p0")
     @Override
     @Transactional(readOnly = true)
     public UserView findById(final String id) {
@@ -93,7 +90,7 @@ public class UserServiceImpl implements UserService {
         return userViewMapper.map(user);
     }
 
-    @Cacheable
+    @Cacheable(key = "#p0")
     @Override
     @Transactional(readOnly = true)
     public UserView findByUsername(final String username) {
@@ -109,7 +106,7 @@ public class UserServiceImpl implements UserService {
                 .authenticate(
                         new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         User user = (User) authentication.getPrincipal();
-        final String accessToken = jwtTokenUtil.generateAccessToken(user);
+        final String accessToken = jwtTokenManager.generateAccessToken(user);
         final UserView userView = userViewMapper.map(user);
         userView.setAccessToken(accessToken);
         return userView;
@@ -117,6 +114,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    @CacheEvict(key = "#p0")
     public void delete(final String id) {
         userRepository.deleteById(id);
     }

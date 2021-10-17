@@ -5,10 +5,11 @@ import com.evil.inc.icresco.domain.dto.UserView;
 import com.evil.inc.icresco.domain.entity.UserAuthority;
 import com.evil.inc.icresco.domain.mapper.Mapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
-@Component
+@Service
 class UserViewMapperImpl implements Mapper<User, UserView> {
     @Override
     public UserView map(final User entity) {

@@ -10,16 +10,17 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-@Component
+@Service
 @RequiredArgsConstructor
 @Slf4j
-public class JwtTokenUtil {
+public class JwtTokenManager {
 
     private final String jwtSecret = "zdtlD3JK56m6wTTgsNFhqzjqP";
     private final String jwtIssuer = "icresco.io";

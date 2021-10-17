@@ -4,8 +4,9 @@ import com.evil.inc.icresco.domain.entity.UserAuthority;
 import com.evil.inc.icresco.domain.dto.UserAuthorityView;
 import com.evil.inc.icresco.domain.mapper.Mapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 class UserAuthorityViewMapperImpl implements Mapper<UserAuthority, UserAuthorityView> {
     @Override
     public UserAuthorityView map(final UserAuthority entity) {
