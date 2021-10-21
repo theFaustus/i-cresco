@@ -37,6 +37,5 @@ public class UserView {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate now = LocalDate.now();
 
-    @JsonIgnore
     private String accessToken;
 }

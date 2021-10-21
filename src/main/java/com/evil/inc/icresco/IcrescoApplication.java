@@ -33,21 +33,21 @@ public class IcrescoApplication {
         SpringApplication.run(IcrescoApplication.class, args);
     }
 
-    @Bean
-    @Profile("dev")
-    public CommandLineRunner commandLineRunner(UserService userService) {
-        return args -> {
-            final CreateUserRequest request = CreateUserRequest.builder()
-                    .email("bdylan@gmail.com")
-                    .firstName("bob")
-                    .lastName("dylan")
-                    .gender("MALE")
-                    .username("bdylan")
-                    .password("nino")
-                    .authorities(Set.of(Authority.POWER_USER.name()))
-                    .build();
-            userService.create(request);
-            log.info("Found {}", userService.findByUsername("bdylan"));
-        };
-    }
+//    @Bean
+//    @Profile("dev")
+//    public CommandLineRunner commandLineRunner(UserService userService) {
+//        return args -> {
+//            final CreateUserRequest request = CreateUserRequest.builder()
+//                    .email("bdylan@gmail.com")
+//                    .firstName("bob")
+//                    .lastName("dylan")
+//                    .gender("MALE")
+//                    .username("bdylan")
+//                    .password("nino")
+//                    .authorities(Set.of(Authority.POWER_USER.name()))
+//                    .build();
+//            userService.create(request);
+//            log.info("Found {}", userService.findByUsername("bdylan"));
+//        };
+//    }
 }

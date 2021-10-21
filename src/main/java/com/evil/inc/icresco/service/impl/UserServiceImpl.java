@@ -51,17 +51,16 @@ public class UserServiceImpl implements UserService {
         return page.map(userViewMapper::map);
     }
 
-    @Cacheable(key = "#p0")
     @Override
+    @Cacheable(key = "#p0")
     @Transactional(readOnly = true)
     public UserView findById(final String id) {
         final User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException(User.class, "id", id));
         return userViewMapper.map(user);
     }
 
-    @Caching(evict = {@CacheEvict(key = "#p0.username", condition = "#p0.username != null")},
-            put = {@CachePut(key = "#p0.username")})
     @Override
+    @Caching(put = {@CachePut(key = "#p0.username")})
     @Transactional
     public UserView create(final CreateUserRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
@@ -90,8 +89,8 @@ public class UserServiceImpl implements UserService {
         return userViewMapper.map(user);
     }
 
-    @Cacheable(key = "#p0")
     @Override
+    @Cacheable(key = "#p0")
     @Transactional(readOnly = true)
     public UserView findByUsername(final String username) {
         final User user = userRepository.findByUsername(username).orElseThrow(
@@ -113,8 +112,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     @CacheEvict(key = "#p0")
+    @Transactional
     public void delete(final String id) {
         userRepository.deleteById(id);
     }
