@@ -36,7 +36,7 @@ import java.util.HashSet;
 @Slf4j
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = CacheNames.USERS_CACHE)
-public class UserServiceImpl implements UserService {
+class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final Mapper<User, UserView> userViewMapper;
@@ -47,8 +47,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public Page<UserView> findAll(final Pageable pageable) {
-        final Page<User> page = userRepository.findAll(pageable);
-        return page.map(userViewMapper::map);
+        return userRepository.findAll(pageable).map(userViewMapper::map);
     }
 
     @Override
@@ -112,7 +111,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @CacheEvict(key = "#p0")
+    @CacheEvict(allEntries = true)
     @Transactional
     public void delete(final String id) {
         userRepository.deleteById(id);

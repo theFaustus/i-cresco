@@ -22,10 +22,15 @@ public class BookRecord extends AbstractEntity{
     private String title;
     @Column(name = "author", nullable = false)
     private String author;
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, length = 3000)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private GrowthPlan growthPlan;
 
+    public BookRecord(final String title, final String author, final String description) {
+        this.title = title;
+        this.author = author;
+        this.description = description;
+    }
 }

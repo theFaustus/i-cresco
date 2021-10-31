@@ -1,15 +1,18 @@
 package com.evil.inc.icresco.web.hateoas.assembler;
 
 import com.evil.inc.icresco.domain.dto.UserView;
+import com.evil.inc.icresco.web.rest.GrowthPlanController;
 import com.evil.inc.icresco.web.rest.UsersController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Service;
 
+import static com.evil.inc.icresco.web.hateoas.domain.CollectionRelation.GROWTH_PLANS;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -22,7 +25,9 @@ public class UserModelAssembler implements RepresentationModelAssembler<UserView
     @Override
     public EntityModel<UserView> toModel(final UserView user) {
         return EntityModel.of(user,
-                              linkTo(methodOn(UsersController.class).get(user.getId())).withSelfRel());
+                              linkTo(methodOn(UsersController.class).get(user.getId())).withSelfRel(),
+                              linkTo(methodOn(GrowthPlanController.class)
+                                             .getAllByUserId(user.getId(), Pageable.unpaged())).withRel(GROWTH_PLANS));
     }
 
     public PagedModel<EntityModel<UserView>> toPagedModel(Page<UserView> users) {

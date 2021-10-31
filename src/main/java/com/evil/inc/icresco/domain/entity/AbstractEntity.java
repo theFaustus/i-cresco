@@ -2,6 +2,7 @@ package com.evil.inc.icresco.domain.entity;
 
 import lombok.Getter;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.id.UUIDGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,9 +12,11 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -31,6 +34,9 @@ public abstract class AbstractEntity implements Serializable {
     @LastModifiedDate
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate;
+
+    @Version
+    private Long version;
 
     public boolean equals(Object other) {
         if (this == other)

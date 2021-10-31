@@ -27,7 +27,7 @@ import java.net.URI;
 
 @Tag(name = "User", description = "Users REST API")
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 @RolesAllowed(Authority.Fields.POWER_USER)
 @RequiredArgsConstructor
 public class UsersController {

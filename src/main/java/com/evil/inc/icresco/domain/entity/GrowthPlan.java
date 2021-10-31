@@ -24,7 +24,7 @@ public class GrowthPlan extends AbstractEntity{
 
     @Column(name = "title", nullable = false)
     private String title;
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, length = 3000)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -53,6 +53,11 @@ public class GrowthPlan extends AbstractEntity{
 
     @OneToMany(mappedBy = "growthPlan", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PresentationRecord> presentationRecords = new ArrayList<>();
+
+    public GrowthPlan(final String title, final String description) {
+        this.title = title;
+        this.description = description;
+    }
 
     public void addWeightRecord(WeightRecord weightRecord) {
         weightRecords.add(weightRecord);
