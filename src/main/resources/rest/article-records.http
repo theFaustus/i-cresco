@@ -1,0 +1,70 @@
+### Create
+POST http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/article-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+{
+  "title": "Overcoming Some Pitfalls of the Google Maps API",
+  "description": "Discussing the problems during the integration of a Spring Boot + Thymeleaf web application with the Google Maps API in order to achieve an employee location tracking system.",
+  "url": "https://dzone.com/articles/google-maps-api-pitfalls"
+}
+
+### Create
+POST http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/article-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+{
+  "title": "Diving Into SSO With Spring SAML and SSOCircle",
+  "description": "How to configure Spring SAML on Spring Boot + Thymeleaf project via java configuration and connecting it to SSOCircle Identity Provider.",
+  "url": "https://dzone.com/articles/diving-into-sso-with-spring-saml-and-ssocircle-pit"
+}
+
+### Create
+POST http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/article-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+{
+  "title": "Sprinkle Some ELK on Your Spring Boot Logs",
+  "description": "In this article, we discuss how to get started working with the ELK stack in a Spring Boot application.",
+  "url": "https://dzone.com/articles/sprinkle-some-elk-on-your-spring-boot-logs"
+}
+
+### Create
+POST http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/article-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+{
+  "title": "REST + MongoDB + HATEOAS?",
+  "description": "We take a look at using MongoDB and HATEOAS to create a REST web service that achieves the third level of Richardson's Maturity Model.",
+  "url": "https://dzone.com/articles/rest-mongodb-hateoas"
+}
+
+
+### Get by id
+GET http://localhost:8080/api/v1/users/growth-plans/article-records/7e321a19-7671-441e-95dd-5930f495719a
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get by growth plan id
+GET http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/article-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get by user id
+GET http://localhost:8080/api/v1/users/f3379620-9a83-4d1f-aee4-746046ce3a65/growth-plans/article-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Delete by id
+DELETE http://localhost:8080/api/v1/users/growth-plans/article-records/0bc182fe-3438-4555-aa36-614e3a27fa08
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get all
+GET http://localhost:8080/api/v1/users/growth-plans/article-records
+Content-Type: application/json
+Authorization: {{authKey}}
+

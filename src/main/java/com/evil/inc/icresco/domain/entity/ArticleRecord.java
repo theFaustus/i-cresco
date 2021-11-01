@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ArticleRecord extends AbstractEntity{
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", nullable = false, unique = true)
     private String title;
     @Column(name = "description", nullable = false, length = 3000)
     private String description;
@@ -28,4 +28,9 @@ public class ArticleRecord extends AbstractEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     private GrowthPlan growthPlan;
 
+    public ArticleRecord(final String title, final String description, final String url) {
+        this.title = title;
+        this.description = description;
+        this.url = url;
+    }
 }

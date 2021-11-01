@@ -59,7 +59,7 @@ class BookRecordServiceImpl implements BookRecordService {
 
     @Override
     @Transactional
-    @Cacheable(key = "#p1")
+    @Cacheable(key = "#p1 + '-' + #p0.title")
     public BookRecordView createForGrowthPlan(final CreateBookRecordRequest createBookRecordRequest,
                                               final String growthPlanId) {
         final GrowthPlan growthPlan = growthPlanRepository.findById(growthPlanId)
