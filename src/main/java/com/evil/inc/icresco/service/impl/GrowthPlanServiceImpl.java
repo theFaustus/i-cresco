@@ -49,7 +49,7 @@ class GrowthPlanServiceImpl implements GrowthPlanService {
 
     @Override
     @Transactional
-    @Caching(put = {@CachePut(key = "#p1")})
+    @Caching(put = {@CachePut(key = "#p1 + '-' + #p0.title")})
     public GrowthPlanView createFor(final CreateGrowthPlanRequest createGrowthPlanRequest,
                                     final String userId) {
         final User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, "id", userId));
