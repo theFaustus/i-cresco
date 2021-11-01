@@ -1,19 +1,19 @@
 package com.evil.inc.icresco.domain.dto;
 
-import com.evil.inc.icresco.web.hateoas.domain.CollectionRelation;
-import com.evil.inc.icresco.web.hateoas.domain.ItemRelation;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.server.core.Relation;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDateTime;
 
-import static com.evil.inc.icresco.web.hateoas.domain.CollectionRelation.BOOK_RECORDS;
-import static com.evil.inc.icresco.web.hateoas.domain.ItemRelation.BOOK_RECORD;
+import static com.evil.inc.icresco.web.hateoas.CollectionRelation.BOOK_RECORDS;
+import static com.evil.inc.icresco.web.hateoas.ItemRelation.BOOK_RECORD;
 
 @Data
 @Builder
@@ -26,4 +26,7 @@ public class BookRecordView {
     private String author;
     private String description;
     private String growthPlanId;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime created;
 }

@@ -20,6 +20,7 @@ class BookRecordViewMapperImpl implements Mapper<BookRecord, BookRecordView> {
                 .author(entity.getAuthor())
                 .description(entity.getDescription())
                 .growthPlanId(entity.getGrowthPlan().getId())
+                .created(entity.getCreatedDate())
                 .build();
     }
 }

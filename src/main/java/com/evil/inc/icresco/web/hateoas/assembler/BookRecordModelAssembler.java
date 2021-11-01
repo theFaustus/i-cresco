@@ -2,8 +2,8 @@ package com.evil.inc.icresco.web.hateoas.assembler;
 
 import com.evil.inc.icresco.domain.dto.BookRecordView;
 import com.evil.inc.icresco.service.UserService;
-import com.evil.inc.icresco.web.hateoas.domain.CollectionRelation;
-import com.evil.inc.icresco.web.hateoas.domain.ItemRelation;
+import com.evil.inc.icresco.web.hateoas.CollectionRelation;
+import com.evil.inc.icresco.web.hateoas.ItemRelation;
 import com.evil.inc.icresco.web.rest.BookRecordController;
 import com.evil.inc.icresco.web.rest.GrowthPlanController;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +17,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import static com.evil.inc.icresco.web.hateoas.CollectionRelation.BOOK_RECORDS;
+import static com.evil.inc.icresco.web.hateoas.ItemRelation.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -34,13 +36,11 @@ public class BookRecordModelAssembler implements RepresentationModelAssembler<Bo
         return EntityModel.of(bookRecord,
                               linkTo(methodOn(BookRecordController.class).get(bookRecord.getId())).withSelfRel(),
                               linkTo(methodOn(BookRecordController.class)
-                                             .getAllForUserId(userId, Pageable.unpaged())).withRel(
-                                      CollectionRelation.BOOK_RECORDS),
+                                             .getAllByUserId(userId, Pageable.unpaged())).withRel(BOOK_RECORDS),
                               linkTo(methodOn(BookRecordController.class)
-                                             .getAllForGrowthPlanId(bookRecord.getId(), Pageable.unpaged())).withRel(
-                                      CollectionRelation.BOOK_RECORDS),
+                                             .getAllByGrowthPlanId(bookRecord.getId(), Pageable.unpaged())).withRel(BOOK_RECORDS),
                               linkTo(methodOn(GrowthPlanController.class)
-                                             .get(bookRecord.getGrowthPlanId())).withRel(ItemRelation.GROWTH_PLAN));
+                                             .get(bookRecord.getGrowthPlanId())).withRel(GROWTH_PLAN));
     }
 
     public PagedModel<EntityModel<BookRecordView>> toPagedModel(Page<BookRecordView> bookRecords) {

@@ -27,14 +27,14 @@ import java.net.URI;
 
 @Tag(name = "GrowthPlan", description = "GrowthPlan REST API")
 @RestController
-@RequestMapping("/api/v1/growth-plans")
+@RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class GrowthPlanController {
     private final GrowthPlanService growthPlanService;
     private final GrowthPlanModelAssembler growthPlanModelAssembler;
 
     @RolesAllowed({Authority.Fields.SIMPLE_USER, Authority.Fields.POWER_USER})
-    @PostMapping("/users/{userId}")
+    @PostMapping("/{userId}/growth-plans")
     public ResponseEntity<EntityModel<GrowthPlanView>> create(@PathVariable String userId, @RequestBody @Valid CreateGrowthPlanRequest request) {
         final GrowthPlanView growthPlanView = growthPlanService.createFor(request, userId);
         URI location = MvcUriComponentsBuilder.fromMethodCall(MvcUriComponentsBuilder.on(getClass())
@@ -43,27 +43,28 @@ public class GrowthPlanController {
     }
 
     @RolesAllowed({Authority.Fields.SIMPLE_USER, Authority.Fields.POWER_USER})
-    @DeleteMapping("{id}")
+    @GetMapping("/{userId}/growth-plans")
+    public ResponseEntity<CollectionModel<EntityModel<GrowthPlanView>>> getAllByUserId(@PathVariable String userId, @PageableDefault Pageable pageable) {
+        return ResponseEntity.ok().body(growthPlanModelAssembler.toPagedModel(growthPlanService.findByUserId(userId, pageable)));
+    }
+
+    @RolesAllowed({Authority.Fields.SIMPLE_USER, Authority.Fields.POWER_USER})
+    @DeleteMapping("/growth-plans/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         growthPlanService.delete(id);
         return ResponseEntity.ok().build();
     }
 
     @RolesAllowed({Authority.Fields.SIMPLE_USER, Authority.Fields.POWER_USER})
-    @GetMapping("{id}")
+    @GetMapping("/growth-plans/{id}")
     public ResponseEntity<EntityModel<GrowthPlanView>> get(@PathVariable String id) {
         return ResponseEntity.ok().body(growthPlanModelAssembler.toModel(growthPlanService.findById(id)));
     }
 
     @RolesAllowed({Authority.Fields.POWER_USER})
-    @GetMapping
+    @GetMapping("/growth-plans")
     public ResponseEntity<CollectionModel<EntityModel<GrowthPlanView>>> getAll(@PageableDefault Pageable pageable) {
         return ResponseEntity.ok().body(growthPlanModelAssembler.toPagedModel(growthPlanService.findAll(pageable)));
     }
 
-    @RolesAllowed({Authority.Fields.SIMPLE_USER, Authority.Fields.POWER_USER})
-    @GetMapping("/users/{userId}")
-    public ResponseEntity<CollectionModel<EntityModel<GrowthPlanView>>> getAllByUserId(@PathVariable String userId, @PageableDefault Pageable pageable) {
-        return ResponseEntity.ok().body(growthPlanModelAssembler.toPagedModel(growthPlanService.findByUserId(userId, pageable)));
-    }
 }

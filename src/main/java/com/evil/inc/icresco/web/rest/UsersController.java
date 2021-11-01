@@ -25,7 +25,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.net.URI;
 
-@Tag(name = "User", description = "Users REST API")
+@Tag(name = "User", description = "User REST API")
 @RestController
 @RequestMapping("/api/v1/users")
 @RolesAllowed(Authority.Fields.POWER_USER)
@@ -55,6 +55,6 @@ public class UsersController {
 
     @GetMapping
     public ResponseEntity<CollectionModel<EntityModel<UserView>>> getAll(@PageableDefault Pageable pageable) {
-        return ResponseEntity.ok().body(userModelAssembler.toCollectionModel(userService.findAll(pageable)));
+        return ResponseEntity.ok().body(userModelAssembler.toPagedModel(userService.findAll(pageable)));
     }
 }

@@ -2,8 +2,7 @@ package com.evil.inc.icresco.web.hateoas.assembler;
 
 import com.evil.inc.icresco.domain.dto.GrowthPlanView;
 import com.evil.inc.icresco.service.UserService;
-import com.evil.inc.icresco.web.hateoas.domain.CollectionRelation;
-import com.evil.inc.icresco.web.hateoas.domain.ItemRelation;
+import com.evil.inc.icresco.web.hateoas.CollectionRelation;
 import com.evil.inc.icresco.web.rest.BookRecordController;
 import com.evil.inc.icresco.web.rest.GrowthPlanController;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import static com.evil.inc.icresco.web.hateoas.domain.CollectionRelation.*;
+import static com.evil.inc.icresco.web.hateoas.CollectionRelation.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -37,8 +36,8 @@ public class GrowthPlanModelAssembler implements RepresentationModelAssembler<Gr
                               linkTo(methodOn(GrowthPlanController.class)
                                              .getAllByUserId(userId, Pageable.unpaged())).withRel(GROWTH_PLANS),
                               linkTo(methodOn(BookRecordController.class)
-                                             .getAllForUserId(userId, Pageable.unpaged())).withRel(
-                                      CollectionRelation.BOOK_RECORDS));
+                                             .getAllByGrowthPlanId(growthPlan.getId(), Pageable.unpaged()))
+                                      .withRel(BOOK_RECORDS));
     }
 
     public PagedModel<EntityModel<GrowthPlanView>> toPagedModel(Page<GrowthPlanView> growthPlans) {

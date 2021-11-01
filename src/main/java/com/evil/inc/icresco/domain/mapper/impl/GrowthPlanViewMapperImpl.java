@@ -17,6 +17,7 @@ class GrowthPlanViewMapperImpl implements Mapper<GrowthPlan, GrowthPlanView> {
                 .title(entity.getTitle())
                 .description(entity.getDescription())
                 .userId(entity.getUser().getId())
+                .created(entity.getCreatedDate())
                 .build();
     }
 }

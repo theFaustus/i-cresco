@@ -26,16 +26,16 @@ import javax.validation.Valid;
 import java.net.URI;
 
 
-@Tag(name = "BookRecord", description = "BookRecords REST API")
+@Tag(name = "BookRecord", description = "BookRecord REST API")
 @RestController
-@RequestMapping("/api/v1/book-records")
+@RequestMapping("/api/v1/users")
 @RolesAllowed(Authority.Fields.POWER_USER)
 @RequiredArgsConstructor
 public class BookRecordController {
     private final BookRecordService bookRecordService;
     private final BookRecordModelAssembler bookRecordModelAssembler;
 
-    @PostMapping("/growth-plans/{growthPlanId}")
+    @PostMapping("/growth-plans/{growthPlanId}/book-records")
     @RolesAllowed({Authority.Fields.SIMPLE_USER, Authority.Fields.POWER_USER})
     public ResponseEntity<EntityModel<BookRecordView>> create(@PathVariable("growthPlanId") String growthPlanId,
                                                               @RequestBody @Valid CreateBookRecordRequest request) {
@@ -45,34 +45,34 @@ public class BookRecordController {
         return ResponseEntity.created(location).body(bookRecordModelAssembler.toModel(bookRecord));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/growth-plans/book-records/{id}")
     @RolesAllowed({Authority.Fields.SIMPLE_USER, Authority.Fields.POWER_USER})
     public ResponseEntity<Void> delete(@PathVariable String id) {
         bookRecordService.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/growth-plans/book-records/{id}")
     @RolesAllowed({Authority.Fields.SIMPLE_USER, Authority.Fields.POWER_USER})
     public ResponseEntity<EntityModel<BookRecordView>> get(@PathVariable String id) {
         return ResponseEntity.ok().body(bookRecordModelAssembler.toModel(bookRecordService.findById(id)));
     }
 
-    @GetMapping
+    @GetMapping("/growth-plans/book-records")
     @RolesAllowed({Authority.Fields.POWER_USER})
     public ResponseEntity<CollectionModel<EntityModel<BookRecordView>>> getAll(@PageableDefault Pageable pageable) {
         return ResponseEntity.ok().body(bookRecordModelAssembler.toPagedModel(bookRecordService.findAll(pageable)));
     }
 
-    @GetMapping("/users/{userId}")
+    @GetMapping("/{userId}/growth-plans/book-records")
     @RolesAllowed({Authority.Fields.POWER_USER})
-    public ResponseEntity<CollectionModel<EntityModel<BookRecordView>>> getAllForUserId(@PathVariable("userId") String userId, @PageableDefault Pageable pageable) {
+    public ResponseEntity<CollectionModel<EntityModel<BookRecordView>>> getAllByUserId(@PathVariable("userId") String userId, @PageableDefault Pageable pageable) {
         return ResponseEntity.ok().body(bookRecordModelAssembler.toPagedModel(bookRecordService.findAllByUserId(userId, pageable)));
     }
 
-    @GetMapping("/growth-plans/{growthPlanId}")
+    @GetMapping("/growth-plans/{growthPlanId}/book-records")
     @RolesAllowed({Authority.Fields.POWER_USER})
-    public ResponseEntity<CollectionModel<EntityModel<BookRecordView>>> getAllForGrowthPlanId(@PathVariable("growthPlanId") String growthPlanId, @PageableDefault Pageable pageable) {
+    public ResponseEntity<CollectionModel<EntityModel<BookRecordView>>> getAllByGrowthPlanId(@PathVariable("growthPlanId") String growthPlanId, @PageableDefault Pageable pageable) {
         return ResponseEntity.ok().body(bookRecordModelAssembler.toPagedModel(bookRecordService.findAllByGrowthPlanId(growthPlanId, pageable)));
     }
 }

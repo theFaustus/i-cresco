@@ -1,5 +1,5 @@
-### Create book-record
-POST http://localhost:8080/api/v1/book-records/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae
+### Create
+POST http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/book-records
 Content-Type: application/json
 Authorization: {{authKey}}
 
@@ -9,8 +9,28 @@ Authorization: {{authKey}}
   "description": "Near the end of this book, Marino uses an apt metaphor, that reading about Kierkegaard, Sartre, Camus Nietsche, Dostoyevsky, Tolstoy, particularly Kierkegaard, is like mining for ore. There are veins of particularly rich meaning, and others that are more meager, and the accumulation that comes out of the mine depends upon many forays. "
 }
 
-### Get book-record by id
-GET http://localhost:8080/api/v1/book-records/e54ad77b-d827-40f6-8191-0fd2e6670549
+### Get by id
+GET http://localhost:8080/api/v1/users/growth-plans/book-records/e54ad77b-d827-40f6-8191-0fd2e6670549
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get by growth plan id
+GET http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/book-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get by user id
+GET http://localhost:8080/api/v1/users/f3379620-9a83-4d1f-aee4-746046ce3a65/growth-plans/book-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Delete by id
+DELETE http://localhost:8080/api/v1/users/growth-plans/book-records/0bc182fe-3438-4555-aa36-614e3a27fa08
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get all
+GET http://localhost:8080/api/v1/users/growth-plans/book-records
 Content-Type: application/json
 Authorization: {{authKey}}
 

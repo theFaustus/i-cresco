@@ -1,24 +1,29 @@
-### Create growth-plan
-POST http://localhost:8080/api/v1/growth-plans/users/f3379620-9a83-4d1f-aee4-746046ce3a65
+### Create
+POST http://localhost:8080/api/v1/users/f3379620-9a83-4d1f-aee4-746046ce3a65/growth-plans
 Content-Type: application/json
 Authorization: {{authKey}}
 
 {
-  "title": "Current tracking growth plan",
+  "title": "Another tracking growth plan",
   "description": "Personal growth plan"
 }
 
-### Get growth-plan by user id
-GET http://localhost:8080/api/v1/growth-plans/users/f3379620-9a83-4d1f-aee4-746046ce3a65
+### Get by user id
+GET http://localhost:8080/api/v1/users/f3379620-9a83-4d1f-aee4-746046ce3a65/growth-plans
 Content-Type: application/json
 Authorization: {{authKey}}
 
 ### Get all
-GET http://localhost:8080/api/v1/growth-plans
+GET http://localhost:8080/api/v1/users/growth-plans
 Content-Type: application/json
 Authorization: {{authKey}}
 
 ### Get by id
-GET http://localhost:8080/api/v1/growth-plans/befc0ed2-20db-40d6-b000-6ca445b5d3af
+GET http://localhost:8080/api/v1/users/growth-plans/befc0ed2-20db-40d6-b000-6ca445b5d3af
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Delete by id
+DELETE http://localhost:8080/api/v1/users/growth-plans/befc0ed2-20db-40d6-b000-6ca445b5d3af
 Content-Type: application/json
 Authorization: {{authKey}}

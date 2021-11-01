@@ -1,7 +1,5 @@
 package com.evil.inc.icresco.domain.dto;
 
-import com.evil.inc.icresco.web.hateoas.domain.CollectionRelation;
-import com.evil.inc.icresco.web.hateoas.domain.ItemRelation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +9,8 @@ import org.springframework.hateoas.server.core.Relation;
 import java.util.List;
 import java.util.Set;
 
-import static com.evil.inc.icresco.web.hateoas.domain.CollectionRelation.*;
-import static com.evil.inc.icresco.web.hateoas.domain.ItemRelation.*;
+import static com.evil.inc.icresco.web.hateoas.CollectionRelation.*;
+import static com.evil.inc.icresco.web.hateoas.ItemRelation.*;
 
 @Data
 @Builder
