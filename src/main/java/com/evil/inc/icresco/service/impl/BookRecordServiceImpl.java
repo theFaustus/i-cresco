@@ -61,11 +61,10 @@ class BookRecordServiceImpl implements BookRecordService {
 
     @Override
     @Transactional
-    @Caching(put = {@CachePut(key = "#p1 + '-' + #p0.title")})
     public BookRecordView createForGrowthPlan(final CreateBookRecordRequest createBookRecordRequest,
                                               final String growthPlanId) {
         final GrowthPlan growthPlan = growthPlanRepository.findById(growthPlanId)
-                .orElseThrow(() -> new NotFoundException(BookRecord.class, "id", growthPlanId));
+                .orElseThrow(() -> new NotFoundException(GrowthPlan.class, "id", growthPlanId));
         final BookRecord bookRecord = new BookRecord(createBookRecordRequest.getTitle(),
                                                      createBookRecordRequest.getAuthor(),
                                                      createBookRecordRequest.getDescription());

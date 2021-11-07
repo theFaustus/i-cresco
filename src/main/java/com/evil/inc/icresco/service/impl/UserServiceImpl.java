@@ -59,7 +59,6 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Caching(put = {@CachePut(key = "#p0.username")})
     @Transactional
     public UserView create(final CreateUserRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {

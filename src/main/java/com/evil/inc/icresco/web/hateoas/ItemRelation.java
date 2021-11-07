@@ -5,4 +5,5 @@ public final class ItemRelation {
      public static final String GROWTH_PLAN = "growthPlan";
      public static final String BOOK_RECORD = "bookRecord";
      public static final String ARTICLE_RECORD = "articleRecord";
+     public static final String EXERCISE_RECORD = "exerciseRecord";
 }

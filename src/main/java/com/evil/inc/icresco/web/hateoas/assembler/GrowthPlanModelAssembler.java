@@ -3,7 +3,9 @@ package com.evil.inc.icresco.web.hateoas.assembler;
 import com.evil.inc.icresco.domain.dto.GrowthPlanView;
 import com.evil.inc.icresco.service.UserService;
 import com.evil.inc.icresco.web.hateoas.CollectionRelation;
+import com.evil.inc.icresco.web.rest.ArticleRecordController;
 import com.evil.inc.icresco.web.rest.BookRecordController;
+import com.evil.inc.icresco.web.rest.ExerciseRecordController;
 import com.evil.inc.icresco.web.rest.GrowthPlanController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -37,7 +39,13 @@ public class GrowthPlanModelAssembler implements RepresentationModelAssembler<Gr
                                              .getAllByUserId(userId, Pageable.unpaged())).withRel(GROWTH_PLANS),
                               linkTo(methodOn(BookRecordController.class)
                                              .getAllByGrowthPlanId(growthPlan.getId(), Pageable.unpaged()))
-                                      .withRel(BOOK_RECORDS));
+                                      .withRel(BOOK_RECORDS),
+                              linkTo(methodOn(ArticleRecordController.class)
+                                             .getAllByGrowthPlanId(growthPlan.getId(), Pageable.unpaged()))
+                                      .withRel(ARTICLE_RECORDS),
+                              linkTo(methodOn(ExerciseRecordController.class)
+                                             .getAllByGrowthPlanId(growthPlan.getId(), Pageable.unpaged()))
+                                      .withRel(EXERCISE_RECORDS));
     }
 
     public PagedModel<EntityModel<GrowthPlanView>> toPagedModel(Page<GrowthPlanView> growthPlans) {

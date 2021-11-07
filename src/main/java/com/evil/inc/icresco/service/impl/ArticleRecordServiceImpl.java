@@ -62,11 +62,10 @@ class ArticleRecordServiceImpl implements ArticleRecordService {
 
     @Override
     @Transactional
-    @Caching(put = {@CachePut(key = "#p1 + '-' + #p0.title")})
     public ArticleRecordView createForGrowthPlan(final CreateArticleRecordRequest createArticleRecordRequest,
                                                  final String growthPlanId) {
         final GrowthPlan growthPlan = growthPlanRepository.findById(growthPlanId)
-                .orElseThrow(() -> new NotFoundException(ArticleRecord.class, "id", growthPlanId));
+                .orElseThrow(() -> new NotFoundException(GrowthPlan.class, "id", growthPlanId));
         final ArticleRecord articleRecord = new ArticleRecord(createArticleRecordRequest.getTitle(),
                                                            createArticleRecordRequest.getDescription(),
                                                            createArticleRecordRequest.getUrl());

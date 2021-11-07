@@ -1,7 +1,6 @@
 package com.evil.inc.icresco.repo;
 
 import com.evil.inc.icresco.domain.entity.BookRecord;
-import com.evil.inc.icresco.domain.entity.GrowthPlan;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

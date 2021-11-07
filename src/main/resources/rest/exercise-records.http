@@ -1,0 +1,36 @@
+### Create
+POST http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/exercise-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+{
+  "exerciseType": "GYM",
+  "durationInMinutes": 124,
+  "caloriesBurnt": 470
+}
+
+### Get by id
+GET http://localhost:8080/api/v1/users/growth-plans/exercise-records/2afd6cef-a07d-4e0c-99d5-f923db04421f
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get by growth plan id
+GET http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/exercise-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get by user id
+GET http://localhost:8080/api/v1/users/f3379620-9a83-4d1f-aee4-746046ce3a65/growth-plans/exercise-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Delete by id
+DELETE http://localhost:8080/api/v1/users/growth-plans/exercise-records/0bc182fe-3438-4555-aa36-614e3a27fa08
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get all
+GET http://localhost:8080/api/v1/users/growth-plans/exercise-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
