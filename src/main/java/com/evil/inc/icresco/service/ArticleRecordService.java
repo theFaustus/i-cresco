@@ -10,9 +10,14 @@ import org.springframework.data.domain.Pageable;
 
 public interface ArticleRecordService {
     Page<ArticleRecordView> findAll(Pageable pageable);
+
     Page<ArticleRecordView> findAllByUserId(String userId, Pageable pageable);
+
     Page<ArticleRecordView> findAllByGrowthPlanId(String growthPlanId, Pageable pageable);
+
     ArticleRecordView findById(String id);
+
     ArticleRecordView createForGrowthPlan(CreateArticleRecordRequest createArticleRecordRequest, String growthPlanId);
+
     void delete(String id);
 }

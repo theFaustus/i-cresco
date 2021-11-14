@@ -12,8 +12,12 @@ import java.util.List;
 
 public interface GrowthPlanService {
     Page<GrowthPlanView> findAll(Pageable pageable);
+
     GrowthPlanView findById(String id);
+
     GrowthPlanView createFor(CreateGrowthPlanRequest createGrowthPlanRequest, final String userId);
+
     Page<GrowthPlanView> findByUserId(String userId, final Pageable pageable);
+
     void delete(String id);
 }

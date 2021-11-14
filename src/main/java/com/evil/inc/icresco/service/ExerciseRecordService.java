@@ -7,9 +7,15 @@ import org.springframework.data.domain.Pageable;
 
 public interface ExerciseRecordService {
     Page<ExerciseRecordView> findAll(Pageable pageable);
+
     Page<ExerciseRecordView> findAllByUserId(String userId, Pageable pageable);
+
     Page<ExerciseRecordView> findAllByGrowthPlanId(String growthPlanId, Pageable pageable);
+
     ExerciseRecordView findById(String id);
-    ExerciseRecordView createForGrowthPlan(CreateExerciseRecordRequest createExerciseRecordRequest, String growthPlanId);
+
+    ExerciseRecordView createForGrowthPlan(CreateExerciseRecordRequest createExerciseRecordRequest,
+                                           String growthPlanId);
+
     void delete(String id);
 }

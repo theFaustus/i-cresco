@@ -5,6 +5,7 @@ import com.evil.inc.icresco.web.rest.ArticleRecordController;
 import com.evil.inc.icresco.web.rest.BookRecordController;
 import com.evil.inc.icresco.web.rest.ExerciseRecordController;
 import com.evil.inc.icresco.web.rest.GrowthPlanController;
+import com.evil.inc.icresco.web.rest.PresentationRecordController;
 import com.evil.inc.icresco.web.rest.UsersController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import static com.evil.inc.icresco.web.hateoas.CollectionRelation.ARTICLE_RECORD
 import static com.evil.inc.icresco.web.hateoas.CollectionRelation.BOOK_RECORDS;
 import static com.evil.inc.icresco.web.hateoas.CollectionRelation.EXERCISE_RECORDS;
 import static com.evil.inc.icresco.web.hateoas.CollectionRelation.GROWTH_PLANS;
+import static com.evil.inc.icresco.web.hateoas.CollectionRelation.PRESENTATION_RECORDS;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -39,7 +41,9 @@ public class UserModelAssembler implements RepresentationModelAssembler<UserView
                               linkTo(methodOn(ArticleRecordController.class)
                                              .getAllByUserId(user.getId(), Pageable.unpaged())).withRel(ARTICLE_RECORDS),
                               linkTo(methodOn(ExerciseRecordController.class)
-                                             .getAllByUserId(user.getId(), Pageable.unpaged())).withRel(EXERCISE_RECORDS));
+                                             .getAllByUserId(user.getId(), Pageable.unpaged())).withRel(EXERCISE_RECORDS),
+                              linkTo(methodOn(PresentationRecordController.class)
+                                             .getAllByUserId(user.getId(), Pageable.unpaged())).withRel(PRESENTATION_RECORDS));
     }
 
     public PagedModel<EntityModel<UserView>> toPagedModel(Page<UserView> users) {

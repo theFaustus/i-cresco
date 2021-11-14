@@ -1,6 +1,7 @@
 package com.evil.inc.icresco.domain.entity;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,4 +29,9 @@ public class PresentationRecord extends AbstractEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     private GrowthPlan growthPlan;
 
+    public PresentationRecord(final String title, final String description, final String url) {
+        this.title = title;
+        this.description = description;
+        this.url = url;
+    }
 }

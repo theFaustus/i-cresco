@@ -6,4 +6,5 @@ public final class CacheNames {
     public static final String BOOK_RECORDS_CACHE = "bookRecordsCache";
     public static final String ARTICLE_RECORDS_CACHE = "articleRecordsCache";
     public static final String EXERCISE_RECORDS_CACHE = "exerciseRecordsCache";
+    public static final String PRESENTATION_RECORDS_CACHE = "presentationRecordsCache";
 }

@@ -1,0 +1,47 @@
+### Create
+POST http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/presentation-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+{
+  "title": "Spring Cloud on AWS",
+  "description": "Spring Cloud allows to implement cloud native application across different cloud platforms. Spring Cloud has also a dedicated support for running applications on the Amazon Web Service platform. This talk will introduce common patterns and best-practices to run the application the AWS cloud and how to use the platform provided services efficiently.",
+  "url": "https://www.youtube.com/watch?v=Qq3CTHRLEwc"
+}
+
+### Create
+POST http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/presentation-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+{
+  "title": "Spring Boot on Amazon Web Services with Spring Cloud AWS",
+  "description": "Spring Cloud AWS is a community project that helps developers use the rich ecosystem of AWS-managed services within a Spring Boot application in a familiar, idiomatic way. In this talk, you'll learn how to speed up the development process using Spring Cloud AWS features, latest additions to the framework, and plans for the future.",
+  "url": "https://www.youtube.com/watch?v=cgMjPBmBkyE"
+}
+
+### Get by id
+GET http://localhost:8080/api/v1/users/growth-plans/presentation-records/aabff25b-18d4-400a-8658-7a0056444a37
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get by growth plan id
+GET http://localhost:8080/api/v1/users/growth-plans/dbed1c15-daed-48c9-a475-08a6feed5dae/presentation-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get by user id
+GET http://localhost:8080/api/v1/users/f3379620-9a83-4d1f-aee4-746046ce3a65/growth-plans/presentation-records
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Delete by id
+DELETE http://localhost:8080/api/v1/users/growth-plans/presentation-records/0bc182fe-3438-4555-aa36-614e3a27fa08
+Content-Type: application/json
+Authorization: {{authKey}}
+
+### Get all
+GET http://localhost:8080/api/v1/users/growth-plans/presentation-records
+Content-Type: application/json
+Authorization: {{authKey}}
+

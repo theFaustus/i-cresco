@@ -26,7 +26,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 
-@Tag(name = "BookRecord", description = "BookRecord REST API")
+@Tag(name = "BookRecord", description = "Endpoints for managing book records")
 @RestController
 @RequestMapping("/api/v1/users")
 @RolesAllowed(Authority.Fields.POWER_USER)

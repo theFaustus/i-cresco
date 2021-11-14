@@ -26,7 +26,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 
-@Tag(name = "ExerciseRecord", description = "ExerciseRecord REST API")
+@Tag(name = "ExerciseRecord", description = "Endpoints for managing exercise records")
 @RestController
 @RequestMapping("/api/v1/users")
 @RolesAllowed(Authority.Fields.POWER_USER)

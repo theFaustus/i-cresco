@@ -6,4 +6,5 @@ public final class CollectionRelation {
      public static final String BOOK_RECORDS = "bookRecords";
      public static final String ARTICLE_RECORDS = "articleRecords";
      public static final String EXERCISE_RECORDS = "exerciseRecords";
+     public static final String PRESENTATION_RECORDS = "presentationRecords";
 }

@@ -5,6 +5,7 @@ import com.evil.inc.icresco.domain.dto.CreateArticleRecordRequest;
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.service.ArticleRecordService;
 import com.evil.inc.icresco.web.hateoas.assembler.ArticleRecordModelAssembler;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +27,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 
-@Tag(name = "ArticleRecord", description = "ArticleRecord REST API")
+@Tag(name = "ArticleRecord", description = "Endpoints for managing article records")
 @RestController
 @RequestMapping("/api/v1/users")
 @RolesAllowed(Authority.Fields.POWER_USER)

@@ -25,7 +25,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.net.URI;
 
-@Tag(name = "GrowthPlan", description = "GrowthPlan REST API")
+@Tag(name = "GrowthPlan", description = "Endpoints for managing user's growth plans")
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor

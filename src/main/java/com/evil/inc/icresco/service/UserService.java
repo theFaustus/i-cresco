@@ -9,9 +9,14 @@ import org.springframework.data.domain.Pageable;
 
 public interface UserService {
     Page<UserView> findAll(Pageable pageable);
+
     UserView findById(String id);
+
     UserView create(CreateUserRequest createUserRequest);
+
     UserView findByUsername(String username);
+
     UserView authenticate(AuthRequest authRequest);
+
     void delete(String id);
 }
