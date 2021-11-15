@@ -74,11 +74,11 @@ public class UsersController {
 
     @Operation(
             tags = {"READ", "User"},
-            summary = "Gets all users",
-            description = "Gets all users",
+            summary = "Gets all users paginated",
+            description = "Gets all users paginated",
             security = @SecurityRequirement(name = "Role", scopes = {"POWER_USER"}))
     @GetMapping
-    public ResponseEntity<CollectionModel<EntityModel<UserView>>> getAll(@PageableDefault Pageable pageable) {
+    public ResponseEntity<CollectionModel<EntityModel<UserView>>> getAllPaginated(@PageableDefault(size = Integer.MAX_VALUE) Pageable pageable) {
         return ResponseEntity.ok().body(userModelAssembler.toPagedModel(userService.findAll(pageable)));
     }
 }

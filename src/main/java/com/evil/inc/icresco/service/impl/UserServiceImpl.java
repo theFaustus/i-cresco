@@ -31,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ValidationException;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -48,6 +49,11 @@ class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public Page<UserView> findAll(final Pageable pageable) {
         return userRepository.findAll(pageable).map(userViewMapper::map);
+    }
+
+    @Override
+    public List<UserView> findAll() {
+        return userViewMapper.map(userRepository.findAll());
     }
 
     @Override
