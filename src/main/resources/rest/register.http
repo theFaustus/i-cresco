@@ -11,3 +11,17 @@ Content-Type: application/json
   "gender" : "MALE",
   "authorities" : ["POWER_USER"]
 }
+
+### Send POST request with json body
+POST http://localhost:8080/api/v1/public/register
+Content-Type: application/json
+
+{
+  "username": "square-pants",
+  "email" : "sponge-bobail.com",
+  "firstName" : "Sponge",
+  "lastName" : "Bob",
+  "password": "123456",
+  "gender" : "MALE",
+  "authorities" : ["SIMPLE_USER"]
+}

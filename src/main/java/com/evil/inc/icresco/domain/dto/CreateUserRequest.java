@@ -14,19 +14,19 @@ import java.util.stream.Collectors;
 @Data
 @Builder
 public class CreateUserRequest {
-    @NotBlank
+    @NotBlank(message = "{first.name.required}")
     private String firstName;
-    @NotBlank
+    @NotBlank(message = "{last.name.required}")
     private String lastName;
-    @NotBlank
+    @NotBlank(message = "{username.required}")
     private String username;
-    @NotBlank
-    @Email
+    @NotBlank(message = "{email.required}")
+    @Email(message = "{email.invalid.format}")
     private String email;
-    @NotBlank
+    @NotBlank(message = "{gender.required}")
     private String gender;
-    @NotBlank
+    @NotBlank(message = "{password.required}")
     private String password;
-    @NotEmpty
+    @NotEmpty(message = "{authorities.not.empty}")
     private Set<String> authorities;
 }
