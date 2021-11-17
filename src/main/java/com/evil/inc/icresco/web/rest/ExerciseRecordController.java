@@ -1,9 +1,10 @@
 package com.evil.inc.icresco.web.rest;
 
-import com.evil.inc.icresco.domain.dto.ExerciseRecordView;
-import com.evil.inc.icresco.domain.dto.CreateExerciseRecordRequest;
+
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.service.ExerciseRecordService;
+import com.evil.inc.icresco.web.dto.CreateExerciseRecordRequest;
+import com.evil.inc.icresco.web.dto.ExerciseRecordView;
 import com.evil.inc.icresco.web.hateoas.assembler.ExerciseRecordModelAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +39,7 @@ public class ExerciseRecordController {
     @PostMapping("/growth-plans/{growthPlanId}/exercise-records")
     @RolesAllowed({Authority.Fields.SIMPLE_USER, Authority.Fields.POWER_USER})
     public ResponseEntity<EntityModel<ExerciseRecordView>> create(@PathVariable("growthPlanId") String growthPlanId,
-                                                              @RequestBody @Valid CreateExerciseRecordRequest request) {
+                                                                  @RequestBody @Valid CreateExerciseRecordRequest request) {
         final ExerciseRecordView exerciseRecord = exerciseRecordService.createForGrowthPlan(request, growthPlanId);
         URI location = MvcUriComponentsBuilder.fromMethodCall(
                 MvcUriComponentsBuilder.on(getClass()).get(exerciseRecord.getId())).build().toUri();

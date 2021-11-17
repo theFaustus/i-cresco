@@ -1,4 +1,4 @@
-package com.evil.inc.icresco.domain.dto;
+package com.evil.inc.icresco.web.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -12,19 +12,19 @@ import org.springframework.hateoas.server.core.Relation;
 
 import java.time.LocalDateTime;
 
-import static com.evil.inc.icresco.web.hateoas.CollectionRelation.BOOK_RECORDS;
-import static com.evil.inc.icresco.web.hateoas.ItemRelation.BOOK_RECORD;
+import static com.evil.inc.icresco.web.hateoas.CollectionRelation.PRESENTATION_RECORDS;
+import static com.evil.inc.icresco.web.hateoas.ItemRelation.PRESENTATION_RECORD;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Relation(itemRelation = BOOK_RECORD, collectionRelation = BOOK_RECORDS)
-public class BookRecordView {
+@Relation(itemRelation = PRESENTATION_RECORD, collectionRelation = PRESENTATION_RECORDS)
+public class PresentationRecordView {
     private String id;
     private String title;
-    private String author;
     private String description;
+    private String url;
     private String growthPlanId;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)

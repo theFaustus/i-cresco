@@ -1,6 +1,6 @@
 package com.evil.inc.icresco.web.hateoas.assembler;
 
-import com.evil.inc.icresco.domain.dto.ExerciseRecordView;
+import com.evil.inc.icresco.web.dto.ExerciseRecordView;
 import com.evil.inc.icresco.service.UserService;
 import com.evil.inc.icresco.web.rest.ExerciseRecordController;
 import com.evil.inc.icresco.web.rest.GrowthPlanController;
@@ -15,7 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import static com.evil.inc.icresco.web.hateoas.CollectionRelation.ARTICLE_RECORDS;
 import static com.evil.inc.icresco.web.hateoas.CollectionRelation.EXERCISE_RECORDS;
 import static com.evil.inc.icresco.web.hateoas.ItemRelation.GROWTH_PLAN;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;

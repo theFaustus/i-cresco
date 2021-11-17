@@ -1,12 +1,12 @@
 package com.evil.inc.icresco.service.impl;
 
 import com.evil.inc.icresco.config.cache.properties.CacheNames;
-import com.evil.inc.icresco.domain.dto.PresentationRecordView;
-import com.evil.inc.icresco.domain.dto.CreatePresentationRecordRequest;
+import com.evil.inc.icresco.web.dto.PresentationRecordView;
+import com.evil.inc.icresco.web.dto.CreatePresentationRecordRequest;
 import com.evil.inc.icresco.domain.entity.PresentationRecord;
 import com.evil.inc.icresco.domain.entity.GrowthPlan;
 import com.evil.inc.icresco.domain.exception.NotFoundException;
-import com.evil.inc.icresco.domain.mapper.Mapper;
+import com.evil.inc.icresco.service.mapper.Mapper;
 import com.evil.inc.icresco.repo.PresentationRecordRepository;
 import com.evil.inc.icresco.repo.GrowthPlanRepository;
 import com.evil.inc.icresco.service.PresentationRecordService;

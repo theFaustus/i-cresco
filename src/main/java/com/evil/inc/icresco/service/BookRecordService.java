@@ -1,13 +1,11 @@
 package com.evil.inc.icresco.service;
 
-import com.evil.inc.icresco.domain.dto.BookRecordView;
-import com.evil.inc.icresco.domain.dto.CreateBookRecordRequest;
-import com.evil.inc.icresco.domain.dto.CreateGrowthPlanRequest;
-import com.evil.inc.icresco.domain.dto.GrowthPlanView;
+import com.evil.inc.icresco.web.dto.BookRecordView;
+import com.evil.inc.icresco.web.dto.CreateBookRecordRequest;
+import com.evil.inc.icresco.web.dto.CreateGrowthPlanRequest;
+import com.evil.inc.icresco.web.dto.GrowthPlanView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
 
 public interface BookRecordService {
     Page<BookRecordView> findAll(Pageable pageable);

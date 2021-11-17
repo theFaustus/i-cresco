@@ -1,23 +1,20 @@
 package com.evil.inc.icresco.service.impl;
 
 import com.evil.inc.icresco.config.cache.properties.CacheNames;
-import com.evil.inc.icresco.domain.dto.ArticleRecordView;
-import com.evil.inc.icresco.domain.dto.CreateArticleRecordRequest;
+import com.evil.inc.icresco.web.dto.ArticleRecordView;
+import com.evil.inc.icresco.web.dto.CreateArticleRecordRequest;
 import com.evil.inc.icresco.domain.entity.ArticleRecord;
 import com.evil.inc.icresco.domain.entity.GrowthPlan;
 import com.evil.inc.icresco.domain.exception.NotFoundException;
-import com.evil.inc.icresco.domain.mapper.Mapper;
+import com.evil.inc.icresco.service.mapper.Mapper;
 import com.evil.inc.icresco.repo.ArticleRecordRepository;
 import com.evil.inc.icresco.repo.GrowthPlanRepository;
-import com.evil.inc.icresco.service.ArticleRecordService;
 import com.evil.inc.icresco.service.ArticleRecordService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

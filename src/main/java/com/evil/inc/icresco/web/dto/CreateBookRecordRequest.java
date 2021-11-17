@@ -1,4 +1,4 @@
-package com.evil.inc.icresco.domain.dto;
+package com.evil.inc.icresco.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateArticleRecordRequest {
+public class CreateBookRecordRequest {
     private String title;
+    private String author;
     private String description;
-    private String url;
 }

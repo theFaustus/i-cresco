@@ -1,11 +1,10 @@
 package com.evil.inc.icresco.web.rest;
 
-import com.evil.inc.icresco.domain.dto.ArticleRecordView;
-import com.evil.inc.icresco.domain.dto.CreateArticleRecordRequest;
+import com.evil.inc.icresco.web.dto.ArticleRecordView;
+import com.evil.inc.icresco.web.dto.CreateArticleRecordRequest;
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.service.ArticleRecordService;
 import com.evil.inc.icresco.web.hateoas.assembler.ArticleRecordModelAssembler;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

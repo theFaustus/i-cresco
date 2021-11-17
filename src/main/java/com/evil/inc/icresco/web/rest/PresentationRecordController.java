@@ -1,7 +1,7 @@
 package com.evil.inc.icresco.web.rest;
 
-import com.evil.inc.icresco.domain.dto.PresentationRecordView;
-import com.evil.inc.icresco.domain.dto.CreatePresentationRecordRequest;
+import com.evil.inc.icresco.web.dto.PresentationRecordView;
+import com.evil.inc.icresco.web.dto.CreatePresentationRecordRequest;
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.service.PresentationRecordService;
 import com.evil.inc.icresco.web.hateoas.assembler.PresentationRecordModelAssembler;

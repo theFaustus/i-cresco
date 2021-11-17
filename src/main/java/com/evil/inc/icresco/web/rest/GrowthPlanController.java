@@ -1,7 +1,7 @@
 package com.evil.inc.icresco.web.rest;
 
-import com.evil.inc.icresco.domain.dto.CreateGrowthPlanRequest;
-import com.evil.inc.icresco.domain.dto.GrowthPlanView;
+import com.evil.inc.icresco.web.dto.CreateGrowthPlanRequest;
+import com.evil.inc.icresco.web.dto.GrowthPlanView;
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.service.GrowthPlanService;
 import com.evil.inc.icresco.web.hateoas.assembler.GrowthPlanModelAssembler;

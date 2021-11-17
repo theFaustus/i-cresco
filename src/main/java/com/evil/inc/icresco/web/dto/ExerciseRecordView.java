@@ -1,5 +1,6 @@
-package com.evil.inc.icresco.domain.dto;
+package com.evil.inc.icresco.web.dto;
 
+import com.evil.inc.icresco.domain.entity.ExerciseType;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -12,21 +13,19 @@ import org.springframework.hateoas.server.core.Relation;
 
 import java.time.LocalDateTime;
 
-import static com.evil.inc.icresco.web.hateoas.CollectionRelation.ARTICLE_RECORDS;
-import static com.evil.inc.icresco.web.hateoas.CollectionRelation.BOOK_RECORDS;
-import static com.evil.inc.icresco.web.hateoas.ItemRelation.ARTICLE_RECORD;
-import static com.evil.inc.icresco.web.hateoas.ItemRelation.BOOK_RECORD;
+import static com.evil.inc.icresco.web.hateoas.CollectionRelation.EXERCISE_RECORDS;
+import static com.evil.inc.icresco.web.hateoas.ItemRelation.EXERCISE_RECORD;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Relation(itemRelation = ARTICLE_RECORD, collectionRelation = ARTICLE_RECORDS)
-public class ArticleRecordView {
+@Relation(itemRelation = EXERCISE_RECORD, collectionRelation = EXERCISE_RECORDS)
+public class ExerciseRecordView {
     private String id;
-    private String title;
-    private String description;
-    private String url;
+    private ExerciseType exerciseType;
+    private Long durationInMinutes;
+    private Double caloriesBurnt;
     private String growthPlanId;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)

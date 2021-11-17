@@ -1,8 +1,7 @@
 package com.evil.inc.icresco.web.hateoas.assembler;
 
-import com.evil.inc.icresco.domain.dto.GrowthPlanView;
+import com.evil.inc.icresco.web.dto.GrowthPlanView;
 import com.evil.inc.icresco.service.UserService;
-import com.evil.inc.icresco.web.hateoas.CollectionRelation;
 import com.evil.inc.icresco.web.rest.ArticleRecordController;
 import com.evil.inc.icresco.web.rest.BookRecordController;
 import com.evil.inc.icresco.web.rest.ExerciseRecordController;

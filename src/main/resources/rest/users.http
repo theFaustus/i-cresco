@@ -7,3 +7,12 @@ Authorization: {{authKey}}
 GET http://localhost:8080/api/v1/users/1ec6a353-5e7e-4198-842f-b099082391ea
 Content-Type: application/json
 Authorization: {{authKey}}
+
+### Send PUT request with json body
+PUT http://localhost:8080/api/v1/users/f3379620-9a83-4d1f-aee4-746046ce3a65
+Content-Type: application/json
+Authorization: {{authKey}}
+
+{
+  "email" : "bdylan@rocknrollcafe.com"
+}

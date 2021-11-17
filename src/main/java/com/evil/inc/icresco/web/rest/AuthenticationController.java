@@ -1,14 +1,15 @@
 package com.evil.inc.icresco.web.rest;
 
-import com.evil.inc.icresco.domain.dto.AuthRequest;
-import com.evil.inc.icresco.domain.dto.CreateUserRequest;
-import com.evil.inc.icresco.domain.dto.UserView;
+import com.evil.inc.icresco.config.validation.OnCreate;
+import com.evil.inc.icresco.web.dto.AuthRequest;
+import com.evil.inc.icresco.web.dto.UpsertUserRequest;
+import com.evil.inc.icresco.web.dto.UserView;
 import com.evil.inc.icresco.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public UserView register(@RequestBody @Valid CreateUserRequest request) {
+    public UserView register(@RequestBody @Validated(OnCreate.class) UpsertUserRequest request) {
         return userService.create(request);
     }
 

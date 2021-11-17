@@ -2,24 +2,22 @@ package com.evil.inc.icresco.service.impl;
 
 import com.evil.inc.icresco.config.cache.properties.CacheNames;
 import com.evil.inc.icresco.config.security.JwtTokenManager;
-import com.evil.inc.icresco.domain.dto.AuthRequest;
-import com.evil.inc.icresco.domain.dto.CreateUserRequest;
-import com.evil.inc.icresco.domain.dto.UserView;
+import com.evil.inc.icresco.web.dto.AuthRequest;
+import com.evil.inc.icresco.web.dto.UpsertUserRequest;
+import com.evil.inc.icresco.web.dto.UserView;
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.domain.entity.Gender;
 import com.evil.inc.icresco.domain.entity.User;
 import com.evil.inc.icresco.domain.entity.UserAuthority;
 import com.evil.inc.icresco.domain.exception.NotFoundException;
-import com.evil.inc.icresco.domain.mapper.Mapper;
+import com.evil.inc.icresco.service.mapper.Mapper;
 import com.evil.inc.icresco.repo.UserRepository;
 import com.evil.inc.icresco.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,6 +26,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.ValidationException;
 import java.util.HashSet;
@@ -66,7 +65,7 @@ class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserView create(final CreateUserRequest request) {
+    public UserView create(final UpsertUserRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new ValidationException("Username exists!");
         }
@@ -120,5 +119,30 @@ class UserServiceImpl implements UserService {
     @Transactional
     public void delete(final String id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    @CacheEvict(allEntries = true)
+    @Transactional
+    public UserView update(final String id, final UpsertUserRequest request) {
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException(User.class, "id", id));
+        if (request.getFirstName() != null)
+            user.setFirstName(request.getFirstName());
+        if (request.getLastName() != null)
+            user.setLastName(request.getLastName());
+        if (request.getEmail() != null)
+            user.setEmail(request.getEmail());
+        if (request.getGender() != null)
+            user.setGender(Gender.valueOf(request.getGender()));
+        if (request.getUsername() != null)
+            user.setUsername(request.getUsername());
+        if (request.getAuthorities() != null)
+            request.getAuthorities()
+                    .stream()
+                    .map(a -> new UserAuthority(Authority.valueOf(a)))
+                    .forEach(user::addAuthority);
+        if (request.getPassword() != null)
+            user.setPassword(request.getPassword());
+        return userViewMapper.map(user);
     }
 }

@@ -1,9 +1,8 @@
 package com.evil.inc.icresco.service;
 
-import com.evil.inc.icresco.domain.dto.AuthRequest;
-import com.evil.inc.icresco.domain.dto.CreateUserRequest;
-import com.evil.inc.icresco.domain.dto.UserView;
-import com.evil.inc.icresco.domain.entity.User;
+import com.evil.inc.icresco.web.dto.AuthRequest;
+import com.evil.inc.icresco.web.dto.UpsertUserRequest;
+import com.evil.inc.icresco.web.dto.UserView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -16,11 +15,13 @@ public interface UserService {
 
     UserView findById(String id);
 
-    UserView create(CreateUserRequest createUserRequest);
+    UserView create(UpsertUserRequest upsertUserRequest);
 
     UserView findByUsername(String username);
 
     UserView authenticate(AuthRequest authRequest);
 
     void delete(String id);
+
+    UserView update(String id, UpsertUserRequest request);
 }

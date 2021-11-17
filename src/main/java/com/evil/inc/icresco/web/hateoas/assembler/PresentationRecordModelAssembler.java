@@ -1,6 +1,6 @@
 package com.evil.inc.icresco.web.hateoas.assembler;
 
-import com.evil.inc.icresco.domain.dto.PresentationRecordView;
+import com.evil.inc.icresco.web.dto.PresentationRecordView;
 import com.evil.inc.icresco.service.UserService;
 import com.evil.inc.icresco.web.rest.GrowthPlanController;
 import com.evil.inc.icresco.web.rest.PresentationRecordController;

@@ -1,8 +1,8 @@
-package com.evil.inc.icresco.domain.mapper.impl;
+package com.evil.inc.icresco.service.mapper.impl;
 
-import com.evil.inc.icresco.domain.dto.PresentationRecordView;
+import com.evil.inc.icresco.web.dto.PresentationRecordView;
 import com.evil.inc.icresco.domain.entity.PresentationRecord;
-import com.evil.inc.icresco.domain.mapper.Mapper;
+import com.evil.inc.icresco.service.mapper.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

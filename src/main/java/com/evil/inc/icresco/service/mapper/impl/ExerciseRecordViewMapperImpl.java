@@ -1,12 +1,10 @@
-package com.evil.inc.icresco.domain.mapper.impl;
+package com.evil.inc.icresco.service.mapper.impl;
 
-import com.evil.inc.icresco.domain.dto.ExerciseRecordView;
+import com.evil.inc.icresco.web.dto.ExerciseRecordView;
 import com.evil.inc.icresco.domain.entity.ExerciseRecord;
-import com.evil.inc.icresco.domain.mapper.Mapper;
+import com.evil.inc.icresco.service.mapper.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.temporal.ChronoUnit;
 
 @Service
 class ExerciseRecordViewMapperImpl implements Mapper<ExerciseRecord, ExerciseRecordView> {

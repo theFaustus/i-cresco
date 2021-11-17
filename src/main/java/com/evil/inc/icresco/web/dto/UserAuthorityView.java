@@ -1,4 +1,4 @@
-package com.evil.inc.icresco.domain.dto;
+package com.evil.inc.icresco.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

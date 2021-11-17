@@ -1,7 +1,7 @@
 package com.evil.inc.icresco.service;
 
-import com.evil.inc.icresco.domain.dto.PresentationRecordView;
-import com.evil.inc.icresco.domain.dto.CreatePresentationRecordRequest;
+import com.evil.inc.icresco.web.dto.PresentationRecordView;
+import com.evil.inc.icresco.web.dto.CreatePresentationRecordRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

@@ -1,12 +1,10 @@
-package com.evil.inc.icresco.domain.dto;
+package com.evil.inc.icresco.web.dto;
 
 import com.evil.inc.icresco.domain.entity.ExerciseType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.Duration;
 
 @Data
 @Builder

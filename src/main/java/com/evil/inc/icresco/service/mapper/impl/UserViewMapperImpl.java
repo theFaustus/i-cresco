@@ -1,13 +1,12 @@
-package com.evil.inc.icresco.domain.mapper.impl;
+package com.evil.inc.icresco.service.mapper.impl;
 
-import com.evil.inc.icresco.domain.dto.GrowthPlanView;
+import com.evil.inc.icresco.web.dto.GrowthPlanView;
 import com.evil.inc.icresco.domain.entity.GrowthPlan;
 import com.evil.inc.icresco.domain.entity.User;
-import com.evil.inc.icresco.domain.dto.UserView;
+import com.evil.inc.icresco.web.dto.UserView;
 import com.evil.inc.icresco.domain.entity.UserAuthority;
-import com.evil.inc.icresco.domain.mapper.Mapper;
+import com.evil.inc.icresco.service.mapper.Mapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

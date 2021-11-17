@@ -1,10 +1,9 @@
 package com.evil.inc.icresco.service;
 
-import com.evil.inc.icresco.domain.dto.ArticleRecordView;
-import com.evil.inc.icresco.domain.dto.BookRecordView;
-import com.evil.inc.icresco.domain.dto.CreateArticleRecordRequest;
-import com.evil.inc.icresco.domain.dto.CreateBookRecordRequest;
-import com.evil.inc.icresco.domain.entity.ArticleRecord;
+import com.evil.inc.icresco.web.dto.ArticleRecordView;
+import com.evil.inc.icresco.web.dto.BookRecordView;
+import com.evil.inc.icresco.web.dto.CreateArticleRecordRequest;
+import com.evil.inc.icresco.web.dto.CreateBookRecordRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
