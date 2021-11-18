@@ -45,7 +45,7 @@ public class UsersController {
     @Operation(
             tags = {"CREATE", "User"},
             summary = "Creates a user",
-            description = "Creates a user by the provided body",
+            description = "Creates a user with the provided body",
             security = @SecurityRequirement(name = "Role", scopes = {"POWER_USER"}))
     @PostMapping
     public ResponseEntity<EntityModel<UserView>> create(@Validated(OnCreate.class) @RequestBody UpsertUserRequest request) {
