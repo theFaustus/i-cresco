@@ -2,8 +2,8 @@ package com.evil.inc.icresco.web.rest;
 
 import com.evil.inc.icresco.config.validation.OnCreate;
 import com.evil.inc.icresco.config.validation.OnUpdate;
-import com.evil.inc.icresco.web.dto.UpsertUserRequest;
-import com.evil.inc.icresco.web.dto.UserView;
+import com.evil.inc.icresco.service.dto.UpsertUserRequest;
+import com.evil.inc.icresco.service.dto.UserView;
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.service.UserService;
 import com.evil.inc.icresco.web.hateoas.assembler.UserModelAssembler;
@@ -20,7 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,7 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import javax.annotation.security.RolesAllowed;
-import javax.validation.Valid;
 import java.net.URI;
 
 @Tag(name = "User", description = "Endpoints for managing users records")

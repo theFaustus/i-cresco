@@ -3,8 +3,8 @@ package com.evil.inc.icresco.web.rest;
 
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.service.ExerciseRecordService;
-import com.evil.inc.icresco.web.dto.CreateExerciseRecordRequest;
-import com.evil.inc.icresco.web.dto.ExerciseRecordView;
+import com.evil.inc.icresco.service.dto.CreateExerciseRecordRequest;
+import com.evil.inc.icresco.service.dto.ExerciseRecordView;
 import com.evil.inc.icresco.web.hateoas.assembler.ExerciseRecordModelAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

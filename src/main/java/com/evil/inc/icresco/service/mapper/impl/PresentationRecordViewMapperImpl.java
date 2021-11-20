@@ -1,6 +1,6 @@
 package com.evil.inc.icresco.service.mapper.impl;
 
-import com.evil.inc.icresco.web.dto.PresentationRecordView;
+import com.evil.inc.icresco.service.dto.PresentationRecordView;
 import com.evil.inc.icresco.domain.entity.PresentationRecord;
 import com.evil.inc.icresco.service.mapper.Mapper;
 import org.springframework.stereotype.Service;

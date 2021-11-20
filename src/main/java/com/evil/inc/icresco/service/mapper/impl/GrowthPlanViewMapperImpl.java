@@ -1,6 +1,6 @@
 package com.evil.inc.icresco.service.mapper.impl;
 
-import com.evil.inc.icresco.web.dto.GrowthPlanView;
+import com.evil.inc.icresco.service.dto.GrowthPlanView;
 import com.evil.inc.icresco.domain.entity.GrowthPlan;
 import com.evil.inc.icresco.service.mapper.Mapper;
 import org.springframework.stereotype.Service;

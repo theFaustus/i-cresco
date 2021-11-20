@@ -1,7 +1,7 @@
 package com.evil.inc.icresco.web.rest;
 
-import com.evil.inc.icresco.web.dto.CreateBookRecordRequest;
-import com.evil.inc.icresco.web.dto.BookRecordView;
+import com.evil.inc.icresco.service.dto.CreateBookRecordRequest;
+import com.evil.inc.icresco.service.dto.BookRecordView;
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.service.BookRecordService;
 import com.evil.inc.icresco.web.hateoas.assembler.BookRecordModelAssembler;

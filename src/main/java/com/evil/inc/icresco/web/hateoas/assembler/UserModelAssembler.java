@@ -1,6 +1,6 @@
 package com.evil.inc.icresco.web.hateoas.assembler;
 
-import com.evil.inc.icresco.web.dto.UserView;
+import com.evil.inc.icresco.service.dto.UserView;
 import com.evil.inc.icresco.web.rest.ArticleRecordController;
 import com.evil.inc.icresco.web.rest.BookRecordController;
 import com.evil.inc.icresco.web.rest.ExerciseRecordController;

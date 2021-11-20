@@ -1,7 +1,7 @@
 package com.evil.inc.icresco.web.rest;
 
-import com.evil.inc.icresco.web.dto.ArticleRecordView;
-import com.evil.inc.icresco.web.dto.CreateArticleRecordRequest;
+import com.evil.inc.icresco.service.dto.ArticleRecordView;
+import com.evil.inc.icresco.service.dto.CreateArticleRecordRequest;
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.service.ArticleRecordService;
 import com.evil.inc.icresco.web.hateoas.assembler.ArticleRecordModelAssembler;

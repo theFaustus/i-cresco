@@ -1,9 +1,9 @@
 package com.evil.inc.icresco.service.mapper.impl;
 
-import com.evil.inc.icresco.web.dto.GrowthPlanView;
+import com.evil.inc.icresco.service.dto.GrowthPlanView;
 import com.evil.inc.icresco.domain.entity.GrowthPlan;
 import com.evil.inc.icresco.domain.entity.User;
-import com.evil.inc.icresco.web.dto.UserView;
+import com.evil.inc.icresco.service.dto.UserView;
 import com.evil.inc.icresco.domain.entity.UserAuthority;
 import com.evil.inc.icresco.service.mapper.Mapper;
 import lombok.RequiredArgsConstructor;

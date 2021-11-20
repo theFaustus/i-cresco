@@ -1,8 +1,8 @@
 package com.evil.inc.icresco.service.impl;
 
 import com.evil.inc.icresco.config.cache.properties.CacheNames;
-import com.evil.inc.icresco.web.dto.CreateGrowthPlanRequest;
-import com.evil.inc.icresco.web.dto.GrowthPlanView;
+import com.evil.inc.icresco.service.dto.CreateGrowthPlanRequest;
+import com.evil.inc.icresco.service.dto.GrowthPlanView;
 import com.evil.inc.icresco.domain.entity.GrowthPlan;
 import com.evil.inc.icresco.domain.entity.User;
 import com.evil.inc.icresco.domain.exception.NotFoundException;

@@ -2,9 +2,9 @@ package com.evil.inc.icresco.service.impl;
 
 import com.evil.inc.icresco.config.cache.properties.CacheNames;
 import com.evil.inc.icresco.config.security.JwtTokenManager;
-import com.evil.inc.icresco.web.dto.AuthRequest;
-import com.evil.inc.icresco.web.dto.UpsertUserRequest;
-import com.evil.inc.icresco.web.dto.UserView;
+import com.evil.inc.icresco.service.dto.AuthRequest;
+import com.evil.inc.icresco.service.dto.UpsertUserRequest;
+import com.evil.inc.icresco.service.dto.UserView;
 import com.evil.inc.icresco.domain.entity.Authority;
 import com.evil.inc.icresco.domain.entity.Gender;
 import com.evil.inc.icresco.domain.entity.User;
@@ -26,7 +26,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.annotation.Validated;
 
 import javax.validation.ValidationException;
 import java.util.HashSet;

@@ -1,7 +1,7 @@
 package com.evil.inc.icresco.service;
 
-import com.evil.inc.icresco.web.dto.ExerciseRecordView;
-import com.evil.inc.icresco.web.dto.CreateExerciseRecordRequest;
+import com.evil.inc.icresco.service.dto.ExerciseRecordView;
+import com.evil.inc.icresco.service.dto.CreateExerciseRecordRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

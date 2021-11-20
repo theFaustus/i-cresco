@@ -1,8 +1,8 @@
 package com.evil.inc.icresco.service.impl;
 
 import com.evil.inc.icresco.config.cache.properties.CacheNames;
-import com.evil.inc.icresco.web.dto.BookRecordView;
-import com.evil.inc.icresco.web.dto.CreateBookRecordRequest;
+import com.evil.inc.icresco.service.dto.BookRecordView;
+import com.evil.inc.icresco.service.dto.CreateBookRecordRequest;
 import com.evil.inc.icresco.domain.entity.BookRecord;
 import com.evil.inc.icresco.domain.entity.GrowthPlan;
 import com.evil.inc.icresco.domain.exception.NotFoundException;

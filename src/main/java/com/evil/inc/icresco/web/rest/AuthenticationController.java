@@ -1,9 +1,9 @@
 package com.evil.inc.icresco.web.rest;
 
 import com.evil.inc.icresco.config.validation.OnCreate;
-import com.evil.inc.icresco.web.dto.AuthRequest;
-import com.evil.inc.icresco.web.dto.UpsertUserRequest;
-import com.evil.inc.icresco.web.dto.UserView;
+import com.evil.inc.icresco.service.dto.AuthRequest;
+import com.evil.inc.icresco.service.dto.UpsertUserRequest;
+import com.evil.inc.icresco.service.dto.UserView;
 import com.evil.inc.icresco.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
