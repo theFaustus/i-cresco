@@ -16,8 +16,11 @@ class BookRecordViewMapperImpl implements Mapper<BookRecord, BookRecordView> {
                 .id(entity.getId())
                 .title(entity.getTitle())
                 .author(entity.getAuthor())
+                .thumbnail(entity.getThumbnail())
+                .pageCount(entity.getPageCount())
                 .description(entity.getDescription())
                 .growthPlanId(entity.getGrowthPlan().getId())
+                .userId(entity.getGrowthPlan().getUser().getId())
                 .created(entity.getCreatedDate())
                 .build();
     }

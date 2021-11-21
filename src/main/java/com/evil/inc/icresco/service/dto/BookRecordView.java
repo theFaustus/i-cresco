@@ -24,8 +24,11 @@ public class BookRecordView {
     private String id;
     private String title;
     private String author;
+    private String thumbnail;
+    private int pageCount;
     private String description;
     private String growthPlanId;
+    private String userId;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime created;

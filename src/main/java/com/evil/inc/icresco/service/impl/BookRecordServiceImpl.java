@@ -6,6 +6,7 @@ import com.evil.inc.icresco.service.dto.CreateBookRecordRequest;
 import com.evil.inc.icresco.domain.entity.BookRecord;
 import com.evil.inc.icresco.domain.entity.GrowthPlan;
 import com.evil.inc.icresco.domain.exception.NotFoundException;
+import com.evil.inc.icresco.service.dto.GoogleBookResponse;
 import com.evil.inc.icresco.service.mapper.Mapper;
 import com.evil.inc.icresco.repo.BookRecordRepository;
 import com.evil.inc.icresco.repo.GrowthPlanRepository;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 @Slf4j
@@ -29,6 +31,7 @@ class BookRecordServiceImpl implements BookRecordService {
     private final BookRecordRepository bookRecordRepository;
     private final GrowthPlanRepository growthPlanRepository;
     private final Mapper<BookRecord, BookRecordView> bookRecordViewMapper;
+    private final RestTemplate restTemplate;
 
     @Override
     @Transactional(readOnly = true)
@@ -66,6 +69,14 @@ class BookRecordServiceImpl implements BookRecordService {
         final BookRecord bookRecord = new BookRecord(createBookRecordRequest.getTitle(),
                                                      createBookRecordRequest.getAuthor(),
                                                      createBookRecordRequest.getDescription());
+
+        final GoogleBookResponse response = restTemplate.getForObject(
+                "https://www.googleapis.com/books/v1/volumes?q=" + bookRecord.getTitle(), GoogleBookResponse.class);
+
+        final GoogleBookResponse.GoogleVolumeInfo volumeInfo = response.getItems().get(0).getVolumeInfo();
+        bookRecord.setThumbnail(volumeInfo.getImageLinks().getThumbnail());
+        bookRecord.setPageCount(volumeInfo.getPageCount());
+
         growthPlan.addBookRecord(bookRecord);
         bookRecordRepository.save(bookRecord);
         return bookRecordViewMapper.map(bookRecord);

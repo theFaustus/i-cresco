@@ -24,6 +24,10 @@ public class BookRecord extends AbstractEntity{
     private String author;
     @Column(name = "description", nullable = false, length = 3000)
     private String description;
+    @Column(name = "thumbnail")
+    private String thumbnail;
+    @Column(name = "page_count")
+    private int pageCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private GrowthPlan growthPlan;

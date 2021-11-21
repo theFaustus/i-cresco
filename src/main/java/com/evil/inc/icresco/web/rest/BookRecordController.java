@@ -60,7 +60,7 @@ public class BookRecordController {
 
     @GetMapping("/growth-plans/book-records")
     @RolesAllowed({Authority.Fields.POWER_USER})
-    public ResponseEntity<CollectionModel<EntityModel<BookRecordView>>> getAll(@PageableDefault Pageable pageable) {
+    public ResponseEntity<CollectionModel<EntityModel<BookRecordView>>> getAll(@PageableDefault(size = Integer.MAX_VALUE) Pageable pageable) {
         return ResponseEntity.ok().body(bookRecordModelAssembler.toPagedModel(bookRecordService.findAll(pageable)));
     }
 
